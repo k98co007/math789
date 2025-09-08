@@ -8,4 +8,13 @@
 - Data Layer: 도메인별 DB (UserDB, CurriculumDB 등), 외부 연동 API
 - Integration Layer: 외부 인증, 결제, 통계, 알림 시스템 연동
 
-각 레이어는 독립적으로 배포 가능하며, API Gateway를 통해 통합 관리됩니다.
+
+## 각 레이어별 운영/보안/테스트/확장성 가이드 (추가)
+
+- **Presentation Layer**: 사용자 입력 검증, XSS/CSRF 방지, 접근성/반응형 UI, 에러/로딩/빈 상태 안내
+- **API Gateway Layer**: 인증/인가(JWT, OAuth2), Rate Limiting, 요청/응답 로깅, 장애 시 Graceful Degradation
+- **Service Layer**: 비즈니스 로직 단위 테스트, 예외 상황(권한, 데이터 없음 등) 명확 처리, 트랜잭션 관리
+- **Data Layer**: 데이터 무결성, 백업/복구, 마이그레이션, 성능 튜닝, 민감정보 암호화
+- **Integration Layer**: 외부 서비스 장애 격리, 재시도/타임아웃, 연동 로그, 보안키 관리
+
+> 각 레이어별로 위 항목을 반드시 고려하여 설계/구현/운영할 것
